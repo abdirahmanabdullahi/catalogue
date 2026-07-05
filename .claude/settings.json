@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(file /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/fonts/*.woff2)",
+      "Bash(xxd)",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -sL --max-time 150 https://web.archive.org/save/https://product-selection.grundfos.com/categories/pumps.category-areas.json -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/spn_cat_pumps.json -w 'pumps subcats: %{http_code} %{size_download}b\\\\n')",
+      "Bash(curl -sL --max-time 150 https://web.archive.org/save/https://product-selection.grundfos.com/categories/pumps -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/spn_pumps_page.html -w 'pumps page: %{http_code} %{size_download}b\\\\n')",
+      "Bash(curl -sL --max-time 150 https://web.archive.org/save/https://product-selection.grundfos.com/content/grundfos/www/en/templates/category-pages/category-area.categories.json -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/spn_all_subcats.json -w '%{http_code} %{size_download}b\\\\n')",
+      "Bash(awk -F/ '{print $\\(NF-1\\)}')",
+      "Bash(flutter test *)",
+      "Bash(open /Users/mohamedabdullahi/development/dev_projects/catalogue/build/macos/Build/Products/Debug/catalogue.app)",
+      "Bash(screencapture -x /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/app_screenshot.png)",
+      "Bash(osascript -e 'tell application \"System Events\" to get name of every process whose name contains \"catalogue\"')",
+      "Bash(python3 -c \"import PIL; print\\('PIL OK'\\)\")",
+      "Bash(python3)",
+      "Bash(pkill -f \"catalogue.app/Contents/MacOS/catalogue\")",
+      "Bash(open build/macos/Build/Products/Debug/catalogue.app)",
+      "Bash(curl -s --max-time 20 https://api.grundfos.com/gpi/imaging/productgroup?pgcode=ALPFAM -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/alpha_natural.jpg)",
+      "Bash(curl -s --max-time 20 'https://api.grundfos.com/gpi/imaging/productgroup?pgcode=ALPFAM&w=400&h=300' -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/alpha_forced.jpg)",
+      "Bash(curl -s --max-time 20 'https://api.grundfos.com/gpi/imaging/productgroup?pgcode=ALPFAM&w=400' -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/alpha_w.jpg)",
+      "Bash(curl -s --max-time 20 https://api.grundfos.com/gpi/imaging/pumpdesign?pumpdesignid=1 -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/pd1_natural.png)",
+      "Bash(curl -s --max-time 20 'https://api.grundfos.com/gpi/imaging/pumpdesign?pumpdesignid=1&w=400' -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/pd1_w.jpg)",
+      "Bash(curl -s --max-time 20 'https://api.grundfos.com/gpi/imaging/pumpdesign?pumpdesignid=1&w=600&h=600' -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/pd1_sq.jpg)",
+      "Bash(gh auth *)",
+      "Bash(git config *)",
+      "Read(//Users/mohamedabdullahi/.ssh/**)",
+      "Bash(ssh -T git@github.com -o ConnectTimeout=8 -o StrictHostKeyChecking=accept-new)",
+      "Bash(brew install *)",
+      "Skill(dataviz)",
+      "Skill(dataviz:*)",
+      "Bash(node scripts/validate_palette.js \"#0842A0,#126AF3,#47A6FF\" --mode light)",
+      "Bash(node scripts/validate_palette.js \"#0B58D0,#3186F0,#6FB1FA\" --mode light)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=abdirahman -c user.email=Abdiciye2@gmail.com commit -q -m 'Grundfos digital catalogue app: web + GitHub Pages deploy *)"
+    ]
+  }
+}
