@@ -379,7 +379,13 @@ class _ProductFamilyScreenState extends State<ProductFamilyScreen> {
               const SizedBox(height: 10),
               OutlinedButton.icon(
                 icon: const Icon(Icons.menu_book_outlined),
-                label: const Text('Download catalogue'),
+                label: const Text('Download full catalogue'),
+                onPressed: () => Downloads.fullCatalogue(context),
+              ),
+              const SizedBox(height: 10),
+              OutlinedButton.icon(
+                icon: const Icon(Icons.picture_as_pdf_outlined),
+                label: const Text('Download this product’s catalogue'),
                 onPressed: () => Downloads.productCatalogue(context, product),
               ),
               const SizedBox(height: 10),

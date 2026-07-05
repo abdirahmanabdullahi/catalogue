@@ -13,6 +13,7 @@ import 'package:catalogue/screens/contact_form_screen.dart';
 import 'package:catalogue/screens/home_screen.dart';
 import 'package:catalogue/screens/products_screen.dart';
 import 'package:catalogue/screens/pump_form_screen.dart';
+import 'package:catalogue/screens/tools_screen.dart';
 import 'package:catalogue/theme.dart';
 import 'package:catalogue/widgets/gf_scaffold.dart';
 
@@ -107,6 +108,15 @@ void main() {
 
   testWidgets('ai assistant', (tester) async {
     await _shoot(tester, const AiAssistantScreen(), 900, 'app_ai');
+  });
+
+  testWidgets('calculators', (tester) async {
+    await _shoot(tester, const CalculatorsScreen(), 1600, 'app_calculators');
+  });
+
+  testWidgets('tool', (tester) async {
+    await _shoot(tester, ToolScreen(tool: AppTool.registry.first), 1400,
+        'app_tool');
   });
 
   testWidgets('categories', (tester) async {

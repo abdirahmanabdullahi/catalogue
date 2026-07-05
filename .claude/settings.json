@@ -33,7 +33,15 @@
       "Bash(node scripts/validate_palette.js \"#0B58D0,#3186F0,#6FB1FA\" --mode light)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git -c user.name=abdirahman -c user.email=Abdiciye2@gmail.com commit -q -m 'Grundfos digital catalogue app: web + GitHub Pages deploy *)"
+      "Bash(git -c user.name=abdirahman -c user.email=Abdiciye2@gmail.com commit -q -m 'Grundfos digital catalogue app: web + GitHub Pages deploy *)",
+      "Bash(open \"https://github.com/login/device\")",
+      "Bash(gh api *)",
+      "Bash(git branch *)",
+      "Bash(gh repo *)",
+      "Bash(git rm *)",
+      "Bash(git -c user.name=abdirahman -c user.email=Abdiciye2@gmail.com commit -q --amend -m 'Grundfos digital catalogue app \\(Flutter\\) *)",
+      "Bash(git push *)",
+      "Bash(git -c user.name=abdirahman -c user.email=Abdiciye2@gmail.com commit -q -m 'Wire all sidebar destinations, add tools/calculators, redesign login, fix appbar logo *)"
     ]
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../data/repository.dart';
+import '../screens/tools_screen.dart';
 import '../theme.dart';
 
 /// Page scaffold with the Grundfos header bar and the
@@ -19,7 +20,10 @@ class GfScaffold extends StatelessWidget {
         title: GestureDetector(
           onTap: () =>
               Navigator.of(context).popUntil((route) => route.isFirst),
-          child: SvgPicture.asset('assets/images/brand/logo.svg', height: 26),
+          child: SvgPicture.asset('assets/images/brand/logo.svg',
+              height: 26,
+              colorFilter:
+                  const ColorFilter.mode(GfColors.ink, BlendMode.srcIn)),
         ),
         actions: [
           IconButton(
@@ -59,6 +63,12 @@ class GfMenuDrawer extends StatelessWidget {
     'Dosing Skid Configurator (Europe)',
     'Digital Dosing Pump Selection Tool',
   ];
+
+  void _openTool(BuildContext context, String title) {
+    Navigator.of(context).pop();
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => ToolScreen(tool: AppTool.byTitle(title))));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -192,12 +202,18 @@ class GfMenuDrawer extends StatelessWidget {
                     onTap: () => go('/products'), primary: true),
                 section('Application Tools'),
                 for (final t in _applicationTools)
-                  item(t, Icons.handyman_outlined),
+                  item(t, Icons.handyman_outlined,
+                      onTap: () => _openTool(context, t)),
                 section('Product tools'),
                 for (final t in _productTools)
-                  item(t, Icons.build_circle_outlined),
+                  item(t, Icons.build_circle_outlined,
+                      onTap: () => _openTool(context, t)),
                 section('More'),
-                item('Calculators', Icons.calculate_outlined),
+                item('Calculators', Icons.calculate_outlined, onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => const CalculatorsScreen()));
+                }),
                 item('Product Compare Variants', Icons.compare_arrows_rounded,
                     onTap: () => go('/compare')),
                 item('Recently viewed products', Icons.history_rounded,
