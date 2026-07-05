@@ -48,7 +48,12 @@
       "Bash(node scripts/validate_palette.js \"#0B6E4F,#0EA371,#34C48A\" --mode light)",
       "Bash(cd /Users/mohamedabdullahi/development/dev_projects/catalogue; sed -i '' 's/GrundfosProductCenterApp/QiantaoProductCenterApp/g; s/Grundfos Product Center/Qiantao Product Center/g' test/*.dart; grep -rno \"Grundfos\" test/ | wc -l; flutter analyze 2>&1 | tail -12)",
       "Bash(perl -0pi -e 's/return DropdownButtonFormField<String>\\\\\\(\\\\n\\(\\\\s+\\)initialValue: value,/return DropdownButtonFormField<String>\\(\\\\n${1}isExpanded: true,\\\\n${1}initialValue: value,/' lib/screens/home_screen.dart)",
-      "Bash(perl -0pi -e 's/DropdownButtonFormField<String>\\\\\\(\\\\n\\(\\\\s+\\)initialValue: _sizeBy,/DropdownButtonFormField<String>\\(\\\\n${1}isExpanded: true,\\\\n${1}initialValue: _sizeBy,/; s/DropdownButtonFormField<String>\\\\\\(\\\\n\\(\\\\s+\\)initialValue: _area,/DropdownButtonFormField<String>\\(\\\\n${1}isExpanded: true,\\\\n${1}initialValue: _area,/' lib/screens/sizing_screen.dart)"
+      "Bash(perl -0pi -e 's/DropdownButtonFormField<String>\\\\\\(\\\\n\\(\\\\s+\\)initialValue: _sizeBy,/DropdownButtonFormField<String>\\(\\\\n${1}isExpanded: true,\\\\n${1}initialValue: _sizeBy,/; s/DropdownButtonFormField<String>\\\\\\(\\\\n\\(\\\\s+\\)initialValue: _area,/DropdownButtonFormField<String>\\(\\\\n${1}isExpanded: true,\\\\n${1}initialValue: _area,/' lib/screens/sizing_screen.dart)",
+      "Bash(curl -s https://abdirahmanabdullahi.github.io/catalogue/favicon.png?t=__CMDSUB_OUTPUT__ -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/live_favicon.png -w 'favicon: %{http_code} %{size_download}b\\\\n')",
+      "Bash(curl -s https://abdirahmanabdullahi.github.io/catalogue/icons/Icon-192.png?t=__CMDSUB_OUTPUT__ -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/live_icon192.png -w 'icon192: %{http_code} %{size_download}b\\\\n')",
+      "Bash(curl -s https://abdirahmanabdullahi.github.io/catalogue/index.html?t=__CMDSUB_OUTPUT__)",
+      "Bash(sips -g pixelWidth build/macos/Build/Products/Debug/catalogue.app/Contents/Resources/AppIcon.icns)",
+      "Bash(sips -s format png build/macos/Build/Products/Debug/catalogue.app/Contents/Resources/AppIcon.icns --out /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/dock_icon.png)"
     ],
     "additionalDirectories": [
       "/Users/mohamedabdullahi/development/dev_projects/catalogue/test"
