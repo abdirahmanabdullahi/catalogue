@@ -1,11 +1,11 @@
 {
-    "name": "catalogue",
-    "short_name": "catalogue",
+    "name": "Grundfos Product Center",
+    "short_name": "Grundfos",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Grundfos digital product catalogue.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

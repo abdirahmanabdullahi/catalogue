@@ -41,7 +41,9 @@
       "Bash(git rm *)",
       "Bash(git -c user.name=abdirahman -c user.email=Abdiciye2@gmail.com commit -q --amend -m 'Grundfos digital catalogue app \\(Flutter\\) *)",
       "Bash(git push *)",
-      "Bash(git -c user.name=abdirahman -c user.email=Abdiciye2@gmail.com commit -q -m 'Wire all sidebar destinations, add tools/calculators, redesign login, fix appbar logo *)"
+      "Bash(git -c user.name=abdirahman -c user.email=Abdiciye2@gmail.com commit -q -m 'Wire all sidebar destinations, add tools/calculators, redesign login, fix appbar logo *)",
+      "Bash(python3 -c 'from PIL import Image; print\\('\\\\''favicon'\\\\'', Image.open\\('\\\\''/Users/mohamedabdullahi/development/dev_projects/catalogue/web/favicon.png'\\\\''\\).size\\)')",
+      "Bash(python3 -c \"from PIL import Image; print\\('built favicon', Image.open\\('build/web/favicon.png'\\).size\\)\")"
     ]
   }
 }
