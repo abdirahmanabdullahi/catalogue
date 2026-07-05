@@ -43,7 +43,15 @@
       "Bash(git push *)",
       "Bash(git -c user.name=abdirahman -c user.email=Abdiciye2@gmail.com commit -q -m 'Wire all sidebar destinations, add tools/calculators, redesign login, fix appbar logo *)",
       "Bash(python3 -c 'from PIL import Image; print\\('\\\\''favicon'\\\\'', Image.open\\('\\\\''/Users/mohamedabdullahi/development/dev_projects/catalogue/web/favicon.png'\\\\''\\).size\\)')",
-      "Bash(python3 -c \"from PIL import Image; print\\('built favicon', Image.open\\('build/web/favicon.png'\\).size\\)\")"
+      "Bash(python3 -c \"from PIL import Image; print\\('built favicon', Image.open\\('build/web/favicon.png'\\).size\\)\")",
+      "Bash(node scripts/validate_palette.js \"#0B7F58,#0EA371,#5FD0A6\" --mode light)",
+      "Bash(node scripts/validate_palette.js \"#0B6E4F,#0EA371,#34C48A\" --mode light)",
+      "Bash(cd /Users/mohamedabdullahi/development/dev_projects/catalogue; sed -i '' 's/GrundfosProductCenterApp/QiantaoProductCenterApp/g; s/Grundfos Product Center/Qiantao Product Center/g' test/*.dart; grep -rno \"Grundfos\" test/ | wc -l; flutter analyze 2>&1 | tail -12)",
+      "Bash(perl -0pi -e 's/return DropdownButtonFormField<String>\\\\\\(\\\\n\\(\\\\s+\\)initialValue: value,/return DropdownButtonFormField<String>\\(\\\\n${1}isExpanded: true,\\\\n${1}initialValue: value,/' lib/screens/home_screen.dart)",
+      "Bash(perl -0pi -e 's/DropdownButtonFormField<String>\\\\\\(\\\\n\\(\\\\s+\\)initialValue: _sizeBy,/DropdownButtonFormField<String>\\(\\\\n${1}isExpanded: true,\\\\n${1}initialValue: _sizeBy,/; s/DropdownButtonFormField<String>\\\\\\(\\\\n\\(\\\\s+\\)initialValue: _area,/DropdownButtonFormField<String>\\(\\\\n${1}isExpanded: true,\\\\n${1}initialValue: _area,/' lib/screens/sizing_screen.dart)"
+    ],
+    "additionalDirectories": [
+      "/Users/mohamedabdullahi/development/dev_projects/catalogue/test"
     ]
   }
 }

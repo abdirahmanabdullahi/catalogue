@@ -71,7 +71,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
       appBar: AppBar(
         title: const Text('Contact us',
             style: TextStyle(
-                fontFamily: 'Grundfos-Extd', fontWeight: FontWeight.w700)),
+                fontFamily: 'Qiantao-Extd', fontWeight: FontWeight.w700)),
         bottom: const PreferredSize(
             preferredSize: Size.fromHeight(1), child: Divider(height: 1)),
       ),
@@ -86,7 +86,7 @@ class _ContactFormScreenState extends State<ContactFormScreen> {
             const SizedBox(height: 6),
             Text(
               'Whether you’re looking to buy a product or simply seeking '
-              'advice from a Grundfos expert, we are more than happy to '
+              'advice from a Qiantao expert, we are more than happy to '
               'help you get the most out of your pump solution!',
               style: theme.textTheme.bodyMedium,
             ),

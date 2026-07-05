@@ -19,7 +19,7 @@ class CategoriesScreen extends StatelessWidget {
           title: 'Categories',
           description:
               'Choose a product category to find all your high-quality '
-              'Grundfos options quickly and easily.',
+              'Qiantao options quickly and easily.',
         ),
         const DeckHeader(title: 'Select by category'),
         for (final c in repo.categories)

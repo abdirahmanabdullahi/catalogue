@@ -98,7 +98,7 @@ class AppTool {
     AppTool(
       'Digital Dosing Pump Selection Tool',
       'Product tool',
-      'Select a Grundfos SMART Digital dosing pump for your chemical, flow '
+      'Select a Qiantao SMART Digital dosing pump for your chemical, flow '
           'and pressure requirements.',
       Icons.opacity_outlined,
       ToolTarget.products,
@@ -137,7 +137,7 @@ class ToolScreen extends StatelessWidget {
         );
       case ToolTarget.assistant:
         return (
-          'Ask Grundfos Assist',
+          'Ask Qiantao Assist',
           () => Navigator.of(context).push(MaterialPageRoute(
               builder: (_) => AiAssistantScreen(
                   seedQuestion: 'Help me with ${tool.title}')))
@@ -182,7 +182,7 @@ class ToolScreen extends StatelessWidget {
               const SizedBox(height: 10),
               const Text(
                 'This tool guides you through the inputs for your '
-                'application and returns matching Grundfos products with '
+                'application and returns matching Qiantao products with '
                 'full specifications, performance curves and downloadable '
                 'documentation — all from the digital catalogue.',
                 style:
@@ -285,11 +285,13 @@ class _CalcCard extends StatelessWidget {
             children: [
               Icon(icon, color: GfColors.actionBlue, size: 22),
               const SizedBox(width: 10),
-              Text(title,
-                  style: const TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w700,
-                      color: GfColors.ink)),
+              Expanded(
+                child: Text(title,
+                    style: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                        color: GfColors.ink)),
+              ),
             ],
           ),
           const SizedBox(height: 14),
@@ -328,7 +330,7 @@ Widget _result(String label, String value) => Container(
           const SizedBox(height: 2),
           Text(value,
               style: const TextStyle(
-                  fontFamily: 'Grundfos-Extd',
+                  fontFamily: 'Qiantao-Extd',
                   fontWeight: FontWeight.w700,
                   fontSize: 22,
                   color: GfColors.darkBlue)),

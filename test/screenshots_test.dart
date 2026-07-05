@@ -19,12 +19,12 @@ import 'package:catalogue/widgets/gf_scaffold.dart';
 
 Future<void> _loadFonts() async {
   const fonts = {
-    'Grundfos': [
-      'assets/fonts/GrundfosTheSans-SemiLight.ttf',
-      'assets/fonts/GrundfosTheSans-Regular.ttf',
-      'assets/fonts/GrundfosTheSans-Bold.ttf',
+    'Qiantao': [
+      'assets/fonts/QiantaoTheSans-SemiLight.ttf',
+      'assets/fonts/QiantaoTheSans-Regular.ttf',
+      'assets/fonts/QiantaoTheSans-Bold.ttf',
     ],
-    'Grundfos-Extd': ['assets/fonts/GrundfosTheSans-ExtdBold.ttf'],
+    'Qiantao-Extd': ['assets/fonts/QiantaoTheSans-ExtdBold.ttf'],
   };
   for (final entry in fonts.entries) {
     final loader = FontLoader(entry.key);
@@ -65,7 +65,7 @@ Future<void> _shoot(
 
   await tester.pumpWidget(MaterialApp(
     debugShowCheckedModeBanner: false,
-    theme: grundfosTheme(),
+    theme: qiantaoTheme(),
     home: screen,
   ));
   await tester.pump();
@@ -87,7 +87,7 @@ void main() {
     await binding.runAsync(_loadFonts);
     await binding.runAsync(CatalogueRepository.instance.load);
     await binding.runAsync(
-        () => Session.instance.signIn('demo@grundfos.com', 'Alex Morgan'));
+        () => Session.instance.signIn('demo@qiantao.com', 'Alex Morgan'));
   });
 
   testWidgets('auth', (tester) async {
@@ -102,7 +102,7 @@ void main() {
     final p = CatalogueRepository.instance.products
         .firstWhere((p) => p.typeCode == 'ALPFAM',
             orElse: () => CatalogueRepository.instance.products.first);
-    await _shoot(tester, ProductFamilyScreen(product: p), 2600,
+    await _shoot(tester, ProductFamilyScreen(product: p), 4400,
         'app_product_detail');
   });
 

@@ -1,4 +1,4 @@
-/// Data models mirroring the JSON scraped from product-selection.grundfos.com.
+/// Data models mirroring the JSON scraped from qiantao (catalogue source).
 library;
 
 class CategoryArea {

@@ -67,7 +67,7 @@ class StatTile extends StatelessWidget {
             child: Text(value,
                 maxLines: 1,
                 style: TextStyle(
-                    fontFamily: 'Grundfos-Extd',
+                    fontFamily: 'Qiantao-Extd',
                     fontWeight: FontWeight.w700,
                     fontSize: 21,
                     height: 1.0,
@@ -120,7 +120,7 @@ class GradientHero extends StatelessWidget {
           ],
           Text(title,
               style: const TextStyle(
-                  fontFamily: 'Grundfos-Extd',
+                  fontFamily: 'Qiantao-Extd',
                   fontWeight: FontWeight.w700,
                   fontSize: 30,
                   height: 1.12,
@@ -165,7 +165,11 @@ class LightPillButton extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (icon != null) ...[Icon(icon, size: 18), const SizedBox(width: 8)],
-        Text(label, style: const TextStyle(fontWeight: FontWeight.w700)),
+        Flexible(
+          child: Text(label,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontWeight: FontWeight.w700)),
+        ),
       ],
     );
     return filled

@@ -32,7 +32,7 @@ flutter:
     - assets/images/products/
 
   fonts:
-    - family: Grundfos
+    - family: Qiantao
       fonts:
         - asset: assets/fonts/GrundfosTheSans-SemiLight.ttf
           weight: 300
@@ -40,7 +40,7 @@ flutter:
           weight: 400
         - asset: assets/fonts/GrundfosTheSans-Bold.ttf
           weight: 700
-    - family: Grundfos-Extd
+    - family: Qiantao-Extd
       fonts:
         - asset: assets/fonts/GrundfosTheSans-ExtdBold.ttf
           weight: 700

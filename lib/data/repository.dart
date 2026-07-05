@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'models.dart';
 
 /// Loads and indexes the catalogue data scraped from
-/// product-selection.grundfos.com (assets/data/*.json).
+/// qiantao (catalogue source) (assets/data/*.json).
 ///
 /// The bundled catalogue is read-only; pumps the user adds, updates or
 /// deletes are stored locally (shared_preferences) and merged on load.

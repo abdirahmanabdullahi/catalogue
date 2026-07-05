@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../data/repository.dart';
 import '../theme.dart';
+import '../widgets/brand_logo.dart';
 import '../widgets/flavor.dart';
 
 /// Fully-scrollable, modern front-door auth for the proposal demo.
@@ -58,24 +58,21 @@ class _AuthScreenState extends State<AuthScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SvgPicture.asset('assets/images/brand/logo.svg',
-                      height: 28,
-                      colorFilter: const ColorFilter.mode(
-                          GfColors.white, BlendMode.srcIn)),
+                  const BrandLogo(height: 30, onDark: true),
                   const SizedBox(height: 32),
                   const Eyebrow('Digital Product Catalogue',
                       color: GfColors.lightBlue),
                   const SizedBox(height: 12),
                   const Text('The catalogue,\nin your pocket.',
                       style: TextStyle(
-                          fontFamily: 'Grundfos-Extd',
+                          fontFamily: 'Qiantao-Extd',
                           fontWeight: FontWeight.w700,
                           fontSize: 32,
                           height: 1.12,
                           color: GfColors.white)),
                   const SizedBox(height: 14),
                   Text(
-                    'Every Grundfos pump, spec and performance curve — '
+                    'Every Qiantao pump, spec and performance curve — '
                     'replacing the heavy printed books with a fast, '
                     'searchable digital catalogue.',
                     style: TextStyle(
@@ -137,7 +134,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               ? 'Create your account'
                               : 'Welcome back',
                           style: const TextStyle(
-                              fontFamily: 'Grundfos-Extd',
+                              fontFamily: 'Qiantao-Extd',
                               fontWeight: FontWeight.w700,
                               fontSize: 22,
                               color: GfColors.ink)),

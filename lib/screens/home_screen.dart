@@ -196,11 +196,14 @@ class _AssistantCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const Text('Grundfos Assist',
-                              style: TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w700,
-                                  color: GfColors.ink)),
+                          const Flexible(
+                            child: Text('Qiantao Assist',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w700,
+                                    color: GfColors.ink)),
+                          ),
                           const SizedBox(width: 8),
                           Container(
                             padding: const EdgeInsets.symmetric(
@@ -258,7 +261,7 @@ class _SearchHero extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Find a Grundfos product',
+          Text('Find a Qiantao product',
               style: theme.textTheme.displaySmall
                   ?.copyWith(color: GfColors.white, fontSize: 30)),
           const SizedBox(height: 20),
@@ -390,6 +393,7 @@ class _SizingHeroState extends State<_SizingHero> {
   Widget _dropdown(String label, List<String> options, String? value,
       ValueChanged<String?> onChanged) {
     return DropdownButtonFormField<String>(
+      isExpanded: true,
       initialValue: value,
       decoration: InputDecoration(
         labelText: label,
@@ -401,7 +405,7 @@ class _SizingHeroState extends State<_SizingHero> {
         ),
       ),
       dropdownColor: GfColors.white,
-      style: const TextStyle(color: GfColors.ink, fontFamily: 'Grundfos'),
+      style: const TextStyle(color: GfColors.ink, fontFamily: 'Qiantao'),
       items: [
         for (final o in options)
           DropdownMenuItem(value: o, child: Text(o)),
@@ -432,7 +436,7 @@ class _ExploreOfferings extends StatelessWidget {
           eyebrow: 'Industry',
           title: 'Industries',
           description:
-              'Explore Grundfos’ offerings and services by industries',
+              'Explore Qiantao’ offerings and services by industries',
           onTap: () => Navigator.of(context).pushNamed('/applications'),
         ),
         TileCard(
@@ -480,10 +484,17 @@ class _MarketingCentre extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.asset('assets/images/home/marketing-centre.jpg',
-                width: double.infinity, height: 170, fit: BoxFit.cover),
+          Container(
+            width: double.infinity,
+            height: 150,
+            decoration: BoxDecoration(
+              gradient: GfGradients.accent,
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: const Center(
+              child: Icon(Icons.campaign_outlined,
+                  size: 56, color: GfColors.white),
+            ),
           ),
           const SizedBox(height: 16),
           Text(
@@ -495,21 +506,21 @@ class _MarketingCentre extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             'Access downloadable elements such as photos, videos, unique '
-            'selling points and campaign materials for a range of Grundfos '
+            'selling points and campaign materials for a range of Qiantao '
             'pumps and solutions for the home.',
             style: theme.textTheme.bodyMedium,
           ),
           const SizedBox(height: 12),
           Text(
-            'Please note the use of Grundfos Marketing Centre is intended for '
-            'use by our distributor and installer customers providing Grundfos '
+            'Please note the use of Qiantao Marketing Centre is intended for '
+            'use by our distributor and installer customers providing Qiantao '
             'solutions to the domestic and residential market.',
             style: theme.textTheme.bodySmall,
           ),
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () {},
-            child: const Text('Go to Grundfos Marketing Centre'),
+            child: const Text('Go to Qiantao Marketing Centre'),
           ),
         ],
       ),
@@ -527,7 +538,7 @@ class _HowCanWeHelp extends StatelessWidget {
     'If you have a specific question or request, our team of experts are '
         'ready to guide you. Feel free to reach out!': 'Ask an expert',
     'With the right service offerings, you can optimise your installation '
-        'and ensure that you get the most out of your Grundfos product.': 'Service request',
+        'and ensure that you get the most out of your Qiantao product.': 'Service request',
   };
 
   @override
@@ -547,7 +558,7 @@ class _HowCanWeHelp extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             'Whether you’re looking to buy a product or simply seeking '
-            'advice from a Grundfos expert, we are more than happy to help '
+            'advice from a Qiantao expert, we are more than happy to help '
             'you get the most out of your pump solution! Feel free to get in '
             'touch if you need support.',
             textAlign: TextAlign.center,

@@ -10,7 +10,7 @@ import '../theme.dart';
 /// H = H0·(1 − (Q/Qmax)²); H0 (max head) and Qmax (max flow) are read
 /// from the product's real technical data when available, so the plotted
 /// envelope matches the catalogue figures. Marked as "illustrative" in the
-/// UI because the true per-model curve lives behind Grundfos' sizing engine.
+/// UI because the true per-model curve lives behind Qiantao' sizing engine.
 class PumpCurveChart extends StatelessWidget {
   final double maxFlow; // Qmax, m³/h
   final double maxHead; // H0,  m

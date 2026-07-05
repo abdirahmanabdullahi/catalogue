@@ -5,7 +5,7 @@ import '../data/repository.dart';
 import '../theme.dart';
 import 'products_screen.dart';
 
-/// "Grundfos Assist" — an AI product advisor UI. Answers are generated
+/// "Qiantao Assist" — an AI product advisor UI. Answers are generated
 /// on-device from the real catalogue (no external service), so the feature
 /// demonstrates the experience for the proposal without a backend.
 class AiAssistantScreen extends StatefulWidget {
@@ -41,7 +41,7 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
   void initState() {
     super.initState();
     _messages.add(_ChatMessage(false,
-        'Hi, I’m Grundfos Assist. Tell me about your application — the '
+        'Hi, I’m Qiantao Assist. Tell me about your application — the '
         'liquid, the job, the setting — and I’ll suggest pumps from the '
         'catalogue.'));
     if (widget.seedQuestion != null) {
@@ -139,9 +139,9 @@ class _AiAssistantScreenState extends State<AiAssistantScreen> {
                   size: 16, color: GfColors.white),
             ),
             const SizedBox(width: 10),
-            const Text('Grundfos Assist',
+            const Text('Qiantao Assist',
                 style: TextStyle(
-                    fontFamily: 'Grundfos-Extd', fontWeight: FontWeight.w700)),
+                    fontFamily: 'Qiantao-Extd', fontWeight: FontWeight.w700)),
           ],
         ),
         bottom: const PreferredSize(

@@ -107,7 +107,7 @@ class _PumpFormScreenState extends State<PumpFormScreen> {
       appBar: AppBar(
         title: Text(_isEdit ? 'Edit pump' : 'Add pump',
             style: const TextStyle(
-                fontFamily: 'Grundfos-Extd', fontWeight: FontWeight.w700)),
+                fontFamily: 'Qiantao-Extd', fontWeight: FontWeight.w700)),
         bottom: const PreferredSize(
             preferredSize: Size.fromHeight(1), child: Divider(height: 1)),
       ),

@@ -10,6 +10,7 @@ import '../widgets/pump_curve.dart';
 import '../widgets/tiles.dart';
 import '../widgets/zoomable_image.dart';
 import 'ai_assistant_screen.dart';
+import 'product_group_screen.dart';
 import 'pump_form_screen.dart';
 
 /// `/products` — the site's Products A-Z: letter-indexed list of all
@@ -65,7 +66,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
       appBar: AppBar(
         title: const Text('Products A-Z',
             style: TextStyle(
-                fontFamily: 'Grundfos-Extd', fontWeight: FontWeight.w700)),
+                fontFamily: 'Qiantao-Extd', fontWeight: FontWeight.w700)),
         bottom: const PreferredSize(
             preferredSize: Size.fromHeight(1), child: Divider(height: 1)),
       ),
@@ -333,10 +334,22 @@ class _ProductFamilyScreenState extends State<ProductFamilyScreen> {
               const SizedBox(height: 12),
               Text(product.title,
                   style: theme.textTheme.headlineMedium?.copyWith(fontSize: 27)),
-              const SizedBox(height: 10),
-              Text(product.description, style: theme.textTheme.bodyLarge),
+              if (group != null) ...[
+                const SizedBox(height: 6),
+                Text('Qiantao ${_titleize(product.urlName)} range',
+                    style: const TextStyle(
+                        fontSize: 13, color: GfColors.grey600)),
+              ],
             ],
           ),
+        ),
+
+        // 1. Pump introduction.
+        _sectionHeader(context, 'Product introduction', null),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Text(product.description,
+              style: theme.textTheme.bodyLarge?.copyWith(height: 1.6)),
         ),
 
         // Key specs stat row (from real technical data).
@@ -395,7 +408,7 @@ class _ProductFamilyScreenState extends State<ProductFamilyScreen> {
                   side: const BorderSide(color: GfColors.teal, width: 1.5),
                 ),
                 icon: const Icon(Icons.auto_awesome),
-                label: const Text('Ask Grundfos Assist about this pump'),
+                label: const Text('Ask Qiantao Assist about this pump'),
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) => AiAssistantScreen(
                       seedQuestion: 'Tell me about the ${product.title}'),
@@ -450,68 +463,90 @@ class _ProductFamilyScreenState extends State<ProductFamilyScreen> {
           ),
         ],
 
-        // Full technical data table.
+        // 3. Motor & technical specification.
         if (group != null && group.technicaldata.isNotEmpty) ...[
-          _sectionHeader(context, 'Technical data', null),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Container(
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: GfColors.grey200),
-              ),
-              child: Column(
-                children: [
-                  for (var i = 0; i < group.technicaldata.length; i++)
-                    Container(
-                      color: i.isEven ? GfColors.white : GfColors.grey100,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 12),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Text(group.technicaldata[i].label,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w700)),
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Text(
-                                '${group.technicaldata[i].data} '
-                                        '${group.technicaldata[i].additionalData}'
-                                    .trim(),
-                                style: const TextStyle(color: GfColors.grey800)),
-                          ),
-                        ],
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ),
+          _sectionHeader(context, 'Motor & technical specification', null),
+          _specTable(context, [
+            ...group.technicaldata
+                .map((t) => (t.label, '${t.data} ${t.additionalData}'.trim())),
+            ('Product family', product.title),
+            ('Type code', product.typeCode),
+            if (group.productcount > 0)
+              ('Variants in family', '${group.productcount}'),
+            ('Availability',
+                product.isDiscontinued ? 'Discontinued' : 'In production'),
+          ]),
         ],
 
-        // Applications chips.
+        // 4. Installation & application.
+        _sectionHeader(context, 'Installation & application', null),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            'The ${product.title} is engineered for reliable, energy-efficient '
+            'operation. Install and commission in accordance with the '
+            'installation & operating instructions, ensuring correct pipe '
+            'support, electrical supply and adequate ventilation.',
+            style: theme.textTheme.bodyMedium?.copyWith(height: 1.6),
+          ),
+        ),
         if (group != null && group.applications.isNotEmpty) ...[
-          _sectionHeader(context, 'Suitable applications', null),
+          const SizedBox(height: 14),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Wrap(
-              spacing: 8,
-              runSpacing: 8,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (final a in group.applications)
-                  Chip(
-                    avatar: const Icon(Icons.check_circle_outline,
-                        size: 16, color: GfColors.green),
-                    label: Text(_titleize(a)),
-                  ),
+                const Text('Typical applications',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700, color: GfColors.grey700)),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    for (final a in group.applications)
+                      Chip(
+                        avatar: const Icon(Icons.check_circle_outline,
+                            size: 16, color: GfColors.green),
+                        label: Text(_titleize(a)),
+                      ),
+                  ],
+                ),
               ],
             ),
           ),
         ],
+
+        // 5. Model overview table (this family + related models).
+        ..._modelTable(context, repo, group, product),
+
+        // Documentation downloads.
+        _sectionHeader(context, 'Documentation', 'Download product data'),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              _docRow(context, Icons.description_outlined, 'Datasheet',
+                  'Full product datasheet (HTML)',
+                  () => Downloads.datasheet(context, product)),
+              _docRow(context, Icons.list_alt_outlined, 'Specifications',
+                  'Technical specification sheet',
+                  () => Downloads.productSpecSheet(context, product)),
+              if (maxFlow != null && maxHead != null && maxFlow > 0)
+                _docRow(context, Icons.show_chart, 'Performance curve data',
+                    'Q/H points as CSV',
+                    () => Downloads.curveData(
+                        context, product, maxFlow, maxHead)),
+              _docRow(context, Icons.menu_book_outlined, 'Catalogue sheet',
+                  'This product’s catalogue page',
+                  () => Downloads.productCatalogue(context, product)),
+              _docRow(context, Icons.inventory_2_outlined, 'Full catalogue',
+                  'Complete Qiantao catalogue',
+                  () => Downloads.fullCatalogue(context)),
+            ],
+          ),
+        ),
 
         // Manage (compare / edit / delete).
         _sectionHeader(context, 'Manage', null),
@@ -570,6 +605,168 @@ class _ProductFamilyScreenState extends State<ProductFamilyScreen> {
     words[0] = words[0][0].toUpperCase() + words[0].substring(1);
     return words.join(' ');
   }
+
+  /// Striped label/value spec table.
+  Widget _specTable(BuildContext context, List<(String, String)> rows) =>
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: GfColors.grey200),
+          ),
+          child: Column(
+            children: [
+              for (var i = 0; i < rows.length; i++)
+                Container(
+                  color: i.isEven ? GfColors.white : GfColors.grey100,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: Text(rows[i].$1,
+                            style:
+                                const TextStyle(fontWeight: FontWeight.w700)),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Text(rows[i].$2,
+                            style: const TextStyle(color: GfColors.grey800)),
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ),
+        ),
+      );
+
+  /// Model overview: this family plus sibling models in the same
+  /// subcategory, with their key specs — a catalogue-style model table.
+  List<Widget> _modelTable(BuildContext context, CatalogueRepository repo,
+      ProductGroup? group, ProductFamily product) {
+    final models = <ProductGroup>[];
+    if (group != null) {
+      final seen = <String>{};
+      for (final scUrl in group.subcategories) {
+        final sc = repo.subcategories.where((s) => s.urlname == scUrl);
+        for (final s in sc) {
+          for (final g in repo.groupsForSubcategory(s)) {
+            if (seen.add(g.typecode)) models.add(g);
+          }
+        }
+      }
+      if (!seen.contains(group.typecode)) models.insert(0, group);
+    }
+    if (models.length < 2) return const [];
+
+    String spec(ProductGroup g, String key) {
+      for (final t in g.technicaldata) {
+        if (t.label.toLowerCase().contains(key)) {
+          final n = _numFrom(t.data, takeMax: true);
+          return n == null ? '—' : '${n.toStringAsFixed(0)} ${t.additionalData}';
+        }
+      }
+      return '—';
+    }
+
+    return [
+      _sectionHeader(context, 'Model overview',
+          '${models.length} models in this range'),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: GfColors.grey200),
+          ),
+          child: Column(
+            children: [
+              Container(
+                color: GfColors.darkBlue,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                child: const Row(
+                  children: [
+                    Expanded(flex: 4, child: _Th('Model')),
+                    Expanded(flex: 2, child: _Th('Max flow')),
+                    Expanded(flex: 2, child: _Th('Max head')),
+                  ],
+                ),
+              ),
+              for (var i = 0; i < models.length && i < 12; i++)
+                InkWell(
+                  onTap: models[i].typecode == group?.typecode
+                      ? null
+                      : () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) =>
+                              ProductGroupScreen(group: models[i]))),
+                  child: Container(
+                    color: models[i].typecode == product.typeCode
+                        ? GfColors.actionBlue.withValues(alpha: 0.06)
+                        : (i.isEven ? GfColors.white : GfColors.grey100),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 11),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 4,
+                          child: Text(models[i].displayname,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: models[i].typecode == product.typeCode
+                                      ? GfColors.actionBlue
+                                      : GfColors.ink)),
+                        ),
+                        Expanded(
+                            flex: 2,
+                            child: Text(spec(models[i], 'flow'),
+                                style: const TextStyle(fontSize: 13))),
+                        Expanded(
+                            flex: 2,
+                            child: Text(spec(models[i], 'head'),
+                                style: const TextStyle(fontSize: 13))),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    ];
+  }
+
+  Widget _docRow(BuildContext context, IconData icon, String title,
+          String subtitle, VoidCallback onTap) =>
+      Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        decoration: BoxDecoration(
+          color: GfColors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: GfColors.grey200),
+        ),
+        child: ListTile(
+          leading: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: GfColors.actionBlue.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(icon, color: GfColors.actionBlue, size: 20),
+          ),
+          title: Text(title,
+              style: const TextStyle(fontWeight: FontWeight.w700)),
+          subtitle: Text(subtitle),
+          trailing: const Icon(Icons.download, color: GfColors.actionBlue),
+          onTap: onTap,
+        ),
+      );
 
   static IconData _specIcon(String label) {
     final l = label.toLowerCase();
@@ -631,4 +828,15 @@ class _ProductFamilyScreenState extends State<ProductFamilyScreen> {
           ],
         ),
       );
+}
+
+/// Table header cell (white text on the emerald header row).
+class _Th extends StatelessWidget {
+  final String text;
+  const _Th(this.text);
+
+  @override
+  Widget build(BuildContext context) => Text(text,
+      style: const TextStyle(
+          color: GfColors.white, fontWeight: FontWeight.w700, fontSize: 13));
 }

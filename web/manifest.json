@@ -1,11 +1,11 @@
 {
-    "name": "Grundfos Product Center",
-    "short_name": "Grundfos",
+    "name": "Qiantao Product Center",
+    "short_name": "Qiantao",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Grundfos digital product catalogue.",
+    "description": "Qiantao digital product catalogue.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

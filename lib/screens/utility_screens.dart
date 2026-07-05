@@ -46,9 +46,9 @@ class _SearchScreenState extends State<SearchScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Find a Grundfos product',
+        title: const Text('Find a Qiantao product',
             style: TextStyle(
-                fontFamily: 'Grundfos-Extd',
+                fontFamily: 'Qiantao-Extd',
                 fontWeight: FontWeight.w700,
                 fontSize: 18)),
         bottom: const PreferredSize(

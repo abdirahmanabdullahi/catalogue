@@ -7,7 +7,7 @@ import '../widgets/gf_scaffold.dart';
 import '../widgets/tiles.dart';
 
 /// Product group / family detail page: photo, description, technical data
-/// (from the live Grundfos catalogue API) and related applications.
+/// (from the live Qiantao catalogue API) and related applications.
 class ProductGroupScreen extends StatelessWidget {
   final ProductGroup group;
 

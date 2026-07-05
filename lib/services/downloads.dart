@@ -28,20 +28,69 @@ class Downloads {
       <p>${product.description}</p>
       ${product.sizable ? '<span class="tag">Sizeable</span>' : ''}
       <h2>Technical data</h2>
-      <table>${rows.isEmpty ? '<tr><td colspan="2">See Grundfos Product Center for full technical data.</td></tr>' : rows}</table>
+      <table>${rows.isEmpty ? '<tr><td colspan="2">See Qiantao Product Center for full technical data.</td></tr>' : rows}</table>
     ''');
     await _run(context, '${_slug(product.title)}-specs.html', html,
         'Product specs downloaded');
+  }
+
+  /// Rich datasheet: identity, description, key facts and technical data.
+  static Future<void> datasheet(
+      BuildContext context, ProductFamily product) async {
+    final repo = CatalogueRepository.instance;
+    final group = repo.groupByTypeCode(product.typeCode) ??
+        repo.groupByUrlname(product.urlName);
+    final rows = StringBuffer();
+    if (group != null) {
+      for (final t in group.technicaldata) {
+        rows.writeln(
+            '<tr><td>${t.label}</td><td>${t.data} ${t.additionalData}</td></tr>');
+      }
+    }
+    final apps = group == null
+        ? ''
+        : group.applications.map((a) => '<li>${_titleize(a)}</li>').join();
+    final html = _wrap('${product.title} — Datasheet', '''
+      <h1>${product.title}</h1>
+      <p class="code">Type code: ${product.typeCode} ·
+        ${product.isDiscontinued ? 'Discontinued' : 'In production'}
+        ${product.sizable ? '· Sizeable' : ''}</p>
+      <p>${product.description}</p>
+      <h2>Technical data</h2>
+      <table>${rows.isEmpty ? '<tr><td colspan="2">Refer to Qiantao Product Center.</td></tr>' : rows}</table>
+      ${apps.isEmpty ? '' : '<h2>Suitable applications</h2><ul>$apps</ul>'}
+      ${group == null ? '' : '<h2>Product family</h2><p>${group.productcount} variants in this family.</p>'}
+    ''');
+    await _run(context, '${_slug(product.title)}-datasheet.html', html,
+        'Datasheet downloaded');
+  }
+
+  /// Performance-curve data as CSV (Q/H points for max, mid and min speed).
+  static Future<void> curveData(
+      BuildContext context, ProductFamily product, double maxFlow,
+      double maxHead) async {
+    final buf = StringBuffer('Flow (m3/h),Head max,Head mid,Head min\n');
+    for (var i = 0; i <= 20; i++) {
+      final q = maxFlow * i / 20;
+      final r = (q / maxFlow) * (q / maxFlow);
+      final hMax = maxHead * (1 - r);
+      final hMid = maxHead * 0.82 * (1 - r);
+      final hMin = maxHead * 0.64 * (1 - r);
+      buf.writeln('${q.toStringAsFixed(2)},${hMax.toStringAsFixed(2)},'
+          '${hMid.toStringAsFixed(2)},${hMin.toStringAsFixed(2)}');
+    }
+    await _run(context, '${_slug(product.title)}-performance-curve.csv',
+        buf.toString(), 'Performance curve data downloaded', mime: 'text/csv');
   }
 
   static Future<void> productCatalogue(
       BuildContext context, ProductFamily product) async {
     final html = _wrap('${product.title} — Catalogue', '''
       <h1>${product.title}</h1>
-      <p class="code">Grundfos digital catalogue extract</p>
+      <p class="code">Qiantao digital catalogue extract</p>
       <p>${product.description}</p>
       <h2>Overview</h2>
-      <p>This catalogue page is generated from the Grundfos Product Center
+      <p>This catalogue page is generated from the Qiantao Product Center
       digital catalogue — the modern replacement for printed product books.</p>
     ''');
     await _run(context, '${_slug(product.title)}-catalogue.html', html,
@@ -55,8 +104,8 @@ class Downloads {
       items.writeln(
           '<tr><td>${p.title}</td><td>${p.typeCode}</td><td>${p.sizable ? 'Yes' : '—'}</td></tr>');
     }
-    final html = _wrap('Grundfos Digital Catalogue', '''
-      <h1>Grundfos Digital Catalogue</h1>
+    final html = _wrap('Qiantao Digital Catalogue', '''
+      <h1>Qiantao Digital Catalogue</h1>
       <p>${repo.products.length} product families · ${repo.categories.length}
       categories · ${repo.applicationAreas.length} application areas</p>
       <h2>Products A–Z</h2>
@@ -65,14 +114,21 @@ class Downloads {
         $items
       </table>
     ''');
-    await _run(context, 'grundfos-digital-catalogue.html', html,
+    await _run(context, 'qiantao-digital-catalogue.html', html,
         'Full catalogue downloaded');
   }
 
+  static String _titleize(String urlname) {
+    final words = urlname.split('-');
+    if (words.isEmpty || words.first.isEmpty) return urlname;
+    words[0] = words[0][0].toUpperCase() + words[0].substring(1);
+    return words.join(' ');
+  }
+
   static Future<void> _run(BuildContext context, String filename,
-      String content, String successMsg) async {
+      String content, String successMsg, {String mime = 'text/html'}) async {
     try {
-      final where = await impl.downloadDocument(filename, content, 'text/html');
+      final where = await impl.downloadDocument(filename, content, mime);
       if (!context.mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: GfColors.green,
@@ -108,9 +164,9 @@ class Downloads {
   header{border-bottom:2px solid #126AF3;padding-bottom:10px;margin-bottom:20px;
          font-weight:bold;color:#11497B}
 </style></head><body>
-<header>GRUNDFOS · Digital Catalogue</header>
+<header>QIANTAO · Digital Catalogue</header>
 $body
 <p style="margin-top:40px;color:#9CA9B5;font-size:12px">
-Generated from the Grundfos Product Center digital catalogue.</p>
+Generated from the Qiantao Product Center digital catalogue.</p>
 </body></html>''';
 }

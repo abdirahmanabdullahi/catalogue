@@ -87,6 +87,7 @@ class _SizingScreenState extends State<SizingScreen> {
               Text('1. Select criteria', style: theme.textTheme.titleLarge),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
+                isExpanded: true,
                 initialValue: _sizeBy,
                 decoration: const InputDecoration(labelText: 'Size by'),
                 items: [
@@ -97,6 +98,7 @@ class _SizingScreenState extends State<SizingScreen> {
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
+                isExpanded: true,
                 initialValue: _area,
                 decoration:
                     const InputDecoration(labelText: 'Select application area'),

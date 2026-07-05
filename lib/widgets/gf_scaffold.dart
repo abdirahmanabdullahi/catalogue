@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../data/repository.dart';
 import '../screens/tools_screen.dart';
 import '../theme.dart';
+import 'brand_logo.dart';
 
-/// Page scaffold with the Grundfos header bar and the
+/// Page scaffold with the Qiantao header bar and the
 /// "Products & services" menu, shared by every screen.
 class GfScaffold extends StatelessWidget {
   final List<Widget> children;
@@ -20,10 +20,7 @@ class GfScaffold extends StatelessWidget {
         title: GestureDetector(
           onTap: () =>
               Navigator.of(context).popUntil((route) => route.isFirst),
-          child: SvgPicture.asset('assets/images/brand/logo.svg',
-              height: 26,
-              colorFilter:
-                  const ColorFilter.mode(GfColors.ink, BlendMode.srcIn)),
+          child: const BrandLogo(height: 26),
         ),
         actions: [
           IconButton(
@@ -145,14 +142,11 @@ class GfMenuDrawer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SvgPicture.asset('assets/images/brand/logo.svg',
-                    height: 24,
-                    colorFilter: const ColorFilter.mode(
-                        GfColors.white, BlendMode.srcIn)),
+                const BrandLogo(height: 24, onDark: true),
                 const SizedBox(height: 14),
                 const Text('Products & services',
                     style: TextStyle(
-                        fontFamily: 'Grundfos-Extd',
+                        fontFamily: 'Qiantao-Extd',
                         fontWeight: FontWeight.w700,
                         fontSize: 18,
                         color: GfColors.white)),
@@ -192,7 +186,7 @@ class GfMenuDrawer extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 24),
               children: [
                 const SizedBox(height: 10),
-                item('Grundfos Assist  ·  AI', Icons.auto_awesome,
+                item('Qiantao Assist  ·  AI', Icons.auto_awesome,
                     onTap: () => go('/assistant'), primary: true),
                 item('Applications', Icons.water_drop_outlined,
                     onTap: () => go('/applications'), primary: true),

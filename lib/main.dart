@@ -16,20 +16,20 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await CatalogueRepository.instance.load();
   await Session.instance.restore();
-  runApp(const GrundfosProductCenterApp());
+  runApp(const QiantaoProductCenterApp());
 }
 
-/// Grundfos Product Center — digital product catalogue
-/// (copy of product-selection.grundfos.com, extended into a proposal app).
-class GrundfosProductCenterApp extends StatelessWidget {
-  const GrundfosProductCenterApp({super.key});
+/// Qiantao Product Center — digital product catalogue
+/// (copy of qiantao (catalogue source), extended into a proposal app).
+class QiantaoProductCenterApp extends StatelessWidget {
+  const QiantaoProductCenterApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Grundfos Product Center',
+      title: 'Qiantao Product Center',
       debugShowCheckedModeBanner: false,
-      theme: grundfosTheme(),
+      theme: qiantaoTheme(),
       home: const _Gate(),
       routes: {
         '/categories': (_) => const CategoriesScreen(),
