@@ -53,7 +53,14 @@
       "Bash(curl -s https://abdirahmanabdullahi.github.io/catalogue/icons/Icon-192.png?t=__CMDSUB_OUTPUT__ -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/live_icon192.png -w 'icon192: %{http_code} %{size_download}b\\\\n')",
       "Bash(curl -s https://abdirahmanabdullahi.github.io/catalogue/index.html?t=__CMDSUB_OUTPUT__)",
       "Bash(sips -g pixelWidth build/macos/Build/Products/Debug/catalogue.app/Contents/Resources/AppIcon.icns)",
-      "Bash(sips -s format png build/macos/Build/Products/Debug/catalogue.app/Contents/Resources/AppIcon.icns --out /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/dock_icon.png)"
+      "Bash(sips -s format png build/macos/Build/Products/Debug/catalogue.app/Contents/Resources/AppIcon.icns --out /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/dock_icon.png)",
+      "Bash(curl -sL --max-time 40 https://www.chimppumps.com/ -A 'Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 Chrome/125.0 Safari/537.36' -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/chimp/home.html -w 'home: %{http_code} %{size_download}b\\\\n')",
+      "Bash(echo \"=== product/nav links ===\")",
+      "Bash(grep -oiE 'href=\"[^\"]*\\(product|pump|shop|catalog|category\\)[^\"]*\"' /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/chimp/home.html)",
+      "Bash(curl -sL --max-time 25 https://www.chimppumps.com/submersible-pump.html -A 'Mozilla/5.0 Chrome/125.0' -o /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/chimp/test_sub.html -w 'http %{http_code} size %{size_download}\\\\n')",
+      "Bash(bash -c ' *)",
+      "Bash(sed -E 's#.*/\\([^/]+\\)$#\\\\1#' /private/tmp/claude-501/-Users-mohamedabdullahi-development-dev-projects-catalogue/67f83c2a-9372-4a44-9f8a-c0955e74d123/scratchpad/chimp/imgurls.txt)",
+      "Bash(python3 -c \"import PIL; print\\('PIL ok'\\)\")"
     ],
     "additionalDirectories": [
       "/Users/mohamedabdullahi/development/dev_projects/catalogue/test"
